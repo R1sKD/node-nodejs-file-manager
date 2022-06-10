@@ -10,6 +10,7 @@ import { getCommand, getCommandArgs } from './parseCommandLIne.js';
 import { add, cat, cp, mv, rm, rn } from '../commands/filesOperations.js';
 import { osInfo } from '../commands/os.js';
 import { calcHash } from '../commands/hash.js';
+import { compress, decompress } from '../commands/zip.js';
 
 export function listenStdin() {
   stdin.on('data', (data) => {
@@ -50,6 +51,12 @@ export function listenStdin() {
         break;
       case 'hash':
         calcHash(args[0]);
+        break;
+      case 'compress':
+        compress(args[0], args[1]);
+        break;
+      case 'decompress':
+        decompress(args[0], args[1]);
         break;
       case '.exit':
         process.exit();
