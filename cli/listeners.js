@@ -8,6 +8,7 @@ import {
 import { cd, list, up } from '../commands/navigation.js';
 import { getCommand, getCommandArgs } from './parseCommandLIne.js';
 import { add, cat, cp, mv, rm, rn } from '../commands/filesOperations.js';
+import { osInfo } from '../commands/os.js';
 
 export function listenStdin() {
   stdin.on('data', (data) => {
@@ -42,6 +43,9 @@ export function listenStdin() {
         break;
       case 'rm':
         rm(args[0]);
+        break;
+      case 'os':
+        osInfo(args[0]);
         break;
       case '.exit':
         process.exit();
