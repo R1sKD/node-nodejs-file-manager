@@ -7,6 +7,7 @@ import {
 } from '../utils/messages.js';
 import { cd, list, up } from '../commands/navigation.js';
 import { getCommand, getCommandArgs } from './parseCommandLIne.js';
+import { add, cat, cp, mv, rm, rn } from '../commands/filesOperations.js';
 
 export function listenStdin() {
   stdin.on('data', (data) => {
@@ -23,6 +24,24 @@ export function listenStdin() {
         break;
       case 'list':
         list();
+        break;
+      case 'cat':
+        cat(args[0]);
+        break;
+      case 'add':
+        add(args[0]);
+        break;
+      case 'rn':
+        rn(args[0], args[1]);
+        break;
+      case 'cp':
+        cp(args[0], args[1]);
+        break;
+      case 'mv':
+        mv(args[0], args[1]);
+        break;
+      case 'rm':
+        rm(args[0]);
         break;
       case '.exit':
         process.exit();
