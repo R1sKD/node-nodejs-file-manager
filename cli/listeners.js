@@ -25,7 +25,7 @@ export function listenStdin() {
       case 'cd':
         cd(args[0]);
         break;
-      case 'list':
+      case 'ls':
         list();
         break;
       case 'cat':

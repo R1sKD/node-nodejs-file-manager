@@ -7,14 +7,15 @@ import {
   mkdir,
   unlink,
 } from 'fs/promises';
-import path from 'path';
+import path, { resolve } from 'path';
 import { cwd, stdout } from 'process';
 import { checkFolderExists } from '../utils/checkFolder.js';
 import { showFailedMessage } from '../utils/messages.js';
+import { getDirname } from '../utils/paths.js';
 
 export const cat = async (filePath) => {
   try {
-    await readFile(filePath, 'utf-8').then((data) => stdout.write(data));
+    await readFile(filePath, 'utf-8').then((data) => stdout.write(`${data}\n`));
   } catch (error) {
     showFailedMessage();
   }
@@ -30,8 +31,9 @@ export const add = async (filePath) => {
 };
 
 export const rn = async (oldPath, newPath) => {
+  const destPath = path.join(path.dirname(resolve(oldPath)), newPath);
   try {
-    await rename(oldPath, newPath);
+    await rename(oldPath, destPath);
   } catch (err) {
     showFailedMessage();
   }

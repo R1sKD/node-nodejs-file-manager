@@ -23,7 +23,8 @@ export const cd = (path) => {
 export const list = async () => {
   try {
     await readdir(cwd()).then((files) => {
-      stdout.write(files);
+      files = files.join('\n');
+      stdout.write(`${files}\n`);
     });
   } catch (err) {
     showFailedMessage();

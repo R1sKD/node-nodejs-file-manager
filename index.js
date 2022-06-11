@@ -1,10 +1,16 @@
+import { chdir } from 'process';
+import os from 'os';
 import { listenStdin, listenProcessExit } from './cli/listeners.js';
 import { showCurrentPath, showWelcomeMessage } from './utils/messages.js';
-import { getDirname } from './utils/paths.js';
+
+const redirectToHomeWorkingDirectory = () => {
+  chdir(os.homedir());
+};
 
 const startApp = () => {
   showWelcomeMessage();
-  showCurrentPath(getDirname(import.meta.url));
+  redirectToHomeWorkingDirectory();
+  showCurrentPath();
   listenStdin();
   listenProcessExit();
 };
