@@ -42,7 +42,8 @@ export const rn = async (oldPath, newPath) => {
 export const cp = async (srcPath, destPath) => {
   try {
     const currentPath = cwd();
-    const destinationWithFilePath = path.join(destPath, srcPath);
+    const fileName = path.basename(srcPath);
+    const destinationWithFilePath = path.join(destPath, fileName);
     const isFolderExists = await checkFolderExists(
       path.join(currentPath, destPath)
     );
