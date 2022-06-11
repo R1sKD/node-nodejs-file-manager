@@ -1,11 +1,10 @@
 import { readdir } from 'fs/promises';
 import { chdir, cwd, stdout } from 'process';
-import { showCurrentPath, showFailedMessage } from '../utils/messages.js';
+import { showFailedMessage } from '../utils/messages.js';
 
 export const up = () => {
   try {
     chdir('../');
-    showCurrentPath();
   } catch (err) {
     showFailedMessage();
   }
@@ -14,7 +13,6 @@ export const up = () => {
 export const cd = (path) => {
   try {
     chdir(`${path}`);
-    showCurrentPath();
   } catch (err) {
     showFailedMessage();
   }

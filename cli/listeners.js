@@ -17,7 +17,6 @@ export function listenStdin() {
     const commandLine = data.toString().slice(0, -os.EOL.length);
     const command = getCommand(commandLine);
     const args = getCommandArgs(commandLine);
-    showCurrentPath();
     switch (command) {
       case 'up':
         up();
@@ -64,6 +63,7 @@ export function listenStdin() {
         showInvalidMessage();
         break;
     }
+    showCurrentPath();
   });
 }
 
