@@ -8,13 +8,13 @@ import {
   unlink,
 } from 'fs/promises';
 import path from 'path';
-import { cwd } from 'process';
+import { cwd, stdout } from 'process';
 import { checkFolderExists } from '../utils/checkFolder.js';
 import { showFailedMessage } from '../utils/messages.js';
 
 export const cat = async (filePath) => {
   try {
-    await readFile(filePath, 'utf-8').then((data) => console.log(data));
+    await readFile(filePath, 'utf-8').then((data) => stdout.write(data));
   } catch (error) {
     showFailedMessage();
   }

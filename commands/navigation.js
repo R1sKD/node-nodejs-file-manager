@@ -1,29 +1,29 @@
 import { readdir } from 'fs/promises';
-import { chdir, cwd } from 'process';
+import { chdir, cwd, stdout } from 'process';
 import { showCurrentPath, showFailedMessage } from '../utils/messages.js';
 
-export function up() {
+export const up = () => {
   try {
     chdir('../');
     showCurrentPath();
   } catch (err) {
     showFailedMessage();
   }
-}
+};
 
-export function cd(path) {
+export const cd = (path) => {
   try {
     chdir(`${path}`);
     showCurrentPath();
   } catch (err) {
     showFailedMessage();
   }
-}
+};
 
 export const list = async () => {
   try {
     await readdir(cwd()).then((files) => {
-      console.log(files);
+      stdout.write(files);
     });
   } catch (err) {
     showFailedMessage();

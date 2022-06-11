@@ -1,4 +1,5 @@
 import { readFile } from 'fs/promises';
+import { stdout } from 'process';
 import { showFailedMessage } from '../utils/messages.js';
 
 export const calcHash = async (filePath) => {
@@ -7,7 +8,7 @@ export const calcHash = async (filePath) => {
     let fileContent = null;
     await readFile(filePath).then((data) => (fileContent = data));
     const hash = createHash('sha256').update(fileContent).digest('hex');
-    console.log(hash);
+    stdout.write(hash);
   } catch (error) {
     showFailedMessage();
   }
