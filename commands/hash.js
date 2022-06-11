@@ -8,7 +8,7 @@ export const calcHash = async (filePath) => {
     let fileContent = null;
     await readFile(filePath).then((data) => (fileContent = data));
     const hash = createHash('sha256').update(fileContent).digest('hex');
-    stdout.write(hash);
+    stdout.write(`${hash}\n`);
   } catch (error) {
     showFailedMessage();
   }
