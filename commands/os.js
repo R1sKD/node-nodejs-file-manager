@@ -1,23 +1,22 @@
 import os from 'os';
-import { stdout } from 'process';
 import { showFailedMessage } from '../utils/messages.js';
 
 export const osInfo = (flag) => {
   switch (flag) {
     case '--EOL':
-      stdout.write(os.EOL);
+      console.log(os.EOL);
       break;
     case '--cpus':
-      stdout.write(os.cpus());
+      console.log(os.cpus());
       break;
     case '--homedir':
-      stdout.write(os.homedir());
+      console.log(os.homedir());
       break;
     case '--username':
-      stdout.write(os.hostname());
+      console.log(os.hostname());
       break;
     case '--architecture':
-      stdout.write(os.arch());
+      console.log(os.arch());
       break;
     default:
       showFailedMessage();
